@@ -426,9 +426,11 @@ if "embed_tile" in query_params:
                 st.success("**Assistant Response:**")
                 st.write(saved_result)
 
-                # Parse bold items into interactive meal buttons
-                bold_matches = re.findall(r'\d+\.\s*\*\*([^*]+)\*\*', saved_result)
-                if not bold_matches:
+                # Parse bold items into interactive meal buttons (food suggestions only)
+                bold_matches = []
+                if selected_pill == "Food Options":
+                    bold_matches = re.findall(r'\d+\.\s*\*\*([^*]+)\*\*', saved_result)
+                if selected_pill == "Food Options" and not bold_matches:
                     bold_matches = re.findall(r'\*\*([^*]+)\*\*', saved_result)
 
                 if bold_matches:

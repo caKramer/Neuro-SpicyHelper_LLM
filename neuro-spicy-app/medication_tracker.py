@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime
 import streamlit as st
+from json_store import save_json
 
 MEDS_LOG_FILE = "medication_log.json"
 
@@ -20,16 +21,23 @@ def load_medications():
 
 def save_medications(meds):
     """Saves medication entries to the JSON file."""
-    with open(MEDS_LOG_FILE, "w") as f:
-        json.dump(meds, f, indent=2)
+    save_json(MEDS_LOG_FILE, meds)
+
+
+def is_taken_today(med):
+    """A dose only counts as taken on the day it was logged."""
+    return bool(med.get("taken")) and med.get("date_str") == datetime.now().strftime("%Y-%m-%d")
 
 
 def log_medication_taken(med_index):
     """Marks a medication as taken and records the exact current timestamp."""
     meds = load_medications()
     if 0 <= med_index < len(meds):
+        now = datetime.now()
         meds[med_index]["taken"] = True
-        meds[med_index]["logged_at_time"] = datetime.now().strftime("%I:%M %p").lstrip("0")
+        meds[med_index]["logged_at_time"] = now.strftime("%I:%M %p").lstrip("0")
+        meds[med_index]["date_str"] = now.strftime("%Y-%m-%d")
+        meds[med_index]["timestamp"] = now.isoformat()
         save_medications(meds)
         return True
     return False
@@ -79,14 +87,14 @@ def render_medication_tracker():
                 st.caption(f"Scheduled: {med.get('time', 'N/A')}")
 
             with col2:
-                if med.get("taken", False):
+                if is_taken_today(med):
                     logged_time = med.get("logged_at_time", "N/A")
                     st.success(f"Taken at {logged_time}")
                 else:
                     st.info("Pending")
 
             with col3:
-                if not med.get("taken", False):
+                if not is_taken_today(med):
                     if st.button("Mark Taken", key=f"med_btn_{idx}", use_container_width=True):
                         log_medication_taken(idx)
                         st.toast(f"Logged {med.get('name')} as taken!", icon="✅")

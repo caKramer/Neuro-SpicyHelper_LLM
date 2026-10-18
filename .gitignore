@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+neuro-spicy-app/model/*.safetensors
+neuro-spicy-app/model/.cache/

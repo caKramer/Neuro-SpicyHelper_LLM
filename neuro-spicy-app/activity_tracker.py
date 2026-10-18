@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import streamlit as st
 from annotated_text import annotated_text
+from json_store import save_json
 
 ACTIVITY_LOG_FILE = "activity_log.json"
 
@@ -18,8 +19,7 @@ def load_activity_log():
 
 
 def save_activity_log(log):
-    with open(ACTIVITY_LOG_FILE, "w") as f:
-        json.dump(log, f, indent=2)
+    save_json(ACTIVITY_LOG_FILE, log)
 
 
 def log_wake_sleep_event(name):

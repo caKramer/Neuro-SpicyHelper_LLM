@@ -4,11 +4,14 @@ import uuid
 from datetime import datetime, timedelta, time
 import streamlit as st
 from streamlit_calendar import calendar
+from json_store import save_json
 
 EVENTS_FILE = "calendar_events.json"
 MEDS_LOG_FILE = "medication_log.json"
 MEAL_LOG_FILE = "meal_log.json"
 ACTIVITY_LOG_FILE = "activity_log.json"
+DISMISSED_SYNCS_FILE = "calendar_dismissed_syncs.json"
+SYNCED_ID_PREFIXES = ("med_", "meal_", "act_")
 
 
 def load_events():
@@ -42,8 +45,25 @@ def load_events():
 
 def save_events(events):
     """Saves calendar events to disk."""
-    with open(EVENTS_FILE, "w") as f:
-        json.dump(events, f, indent=2)
+    save_json(EVENTS_FILE, events)
+
+
+def load_dismissed_sync_ids():
+    """Ids of synced events the user deleted, so the sync doesn't re-create them."""
+    if not os.path.exists(DISMISSED_SYNCS_FILE):
+        return set()
+    try:
+        with open(DISMISSED_SYNCS_FILE, "r") as f:
+            data = json.load(f)
+            return set(data) if isinstance(data, list) else set()
+    except (json.JSONDecodeError, ValueError):
+        return set()
+
+
+def dismiss_synced_event(event_id):
+    dismissed = load_dismissed_sync_ids()
+    dismissed.add(event_id)
+    save_json(DISMISSED_SYNCS_FILE, sorted(dismissed))
 
 
 def _extract_item_date_and_time(item, default_time_str="12:00 PM"):
@@ -103,6 +123,7 @@ def sync_daily_logs_to_calendar():
     today_str = datetime.now().strftime("%Y-%m-%d")
     events = load_events()
     existing_ids = {e.get("id") for e in events if e.get("id")}
+    existing_ids |= load_dismissed_sync_ids()
     updated = False
 
     # 1. Sync Medication Events
@@ -112,7 +133,7 @@ def sync_daily_logs_to_calendar():
                 meds = json.load(f)
                 if isinstance(meds, list):
                     for m in meds:
-                        if m.get("taken", True):
+                        if m.get("taken"):
                             e_date, e_time = _extract_item_date_and_time(m,
                                                                          "08:00 AM")
 
@@ -244,8 +265,7 @@ def clear_stale_synced_events():
     events = load_events()
     manual_events = [
         e for e in events if not any(
-            e.get("id", "").startswith(prefix) for prefix in
-            ("med_", "meal_", "act_")
+            e.get("id", "").startswith(prefix) for prefix in SYNCED_ID_PREFIXES
         )
     ]
     save_events(manual_events)
@@ -317,8 +337,7 @@ def edit_event_dialog(event_data):
     with col1:
         if st.button("Update Event", type="primary", use_container_width=True):
             for e in events:
-                if e.get("id") == event_id or e.get("title") == event_data.get(
-                        "title"):
+                if e.get("id") == event_id:
                     e["title"] = title
                     e["start"] = start
                     e["end"] = end
@@ -328,13 +347,10 @@ def edit_event_dialog(event_data):
 
     with col2:
         if st.button("🗑️ Delete Event", use_container_width=True):
-            events = [
-                e for e in events
-                if
-                e.get("id") != event_id and e.get("title") != event_data.get(
-                    "title")
-            ]
+            events = [e for e in events if e.get("id") != event_id]
             save_events(events)
+            if event_id and event_id.startswith(SYNCED_ID_PREFIXES):
+                dismiss_synced_event(event_id)
             st.rerun()
 
 

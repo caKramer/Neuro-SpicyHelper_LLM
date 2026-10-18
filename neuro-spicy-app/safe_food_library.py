@@ -3,6 +3,7 @@ import os
 import uuid
 import pandas as pd
 import streamlit as st
+from json_store import save_json
 
 SAFE_FOODS_FILE = "safe_foods.json"
 SHOPPING_FILE = "shopping_list.json"
@@ -65,8 +66,22 @@ def load_safe_foods():
 
 
 def save_safe_foods(foods_list):
-    with open(SAFE_FOODS_FILE, "w") as f:
-        json.dump(foods_list, f, indent=2)
+    save_json(SAFE_FOODS_FILE, foods_list)
+
+
+def load_shopping_list():
+    if not os.path.exists(SHOPPING_FILE):
+        return []
+    try:
+        with open(SHOPPING_FILE, "r") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, ValueError):
+        return []
+
+
+def save_shopping_list(items):
+    save_json(SHOPPING_FILE, items)
 
 
 def render_safe_food_tracker():
@@ -217,12 +232,24 @@ def render_safe_food_tracker():
         col_save, _ = st.columns([1, 3])
         with col_save:
             if st.button("💾 Save Table Changes", use_container_width=True):
-                updated_records = edited_df.to_dict(orient="records")
+                edited_records = edited_df.to_dict(orient="records")
 
                 # Backfill IDs for newly added table rows from data_editor
-                for rec in updated_records:
-                    if "id" not in rec or not rec["id"]:
+                for rec in edited_records:
+                    if not isinstance(rec.get("id"), str) or not rec["id"]:
                         rec["id"] = f"food_{uuid.uuid4().hex[:8]}"
+
+                # The editor only shows rows matching the search filter, so merge
+                # its edits into the full registry instead of replacing it.
+                visible_ids = set(display_df["id"])
+                edited_by_id = {rec["id"]: rec for rec in edited_records}
+                updated_records = []
+                for rec in df_foods.to_dict(orient="records"):
+                    if rec["id"] not in visible_ids:
+                        updated_records.append(rec)
+                    elif rec["id"] in edited_by_id:
+                        updated_records.append(edited_by_id.pop(rec["id"]))
+                updated_records.extend(edited_by_id.values())
 
                 save_safe_foods(updated_records)
                 st.toast("Favorite foods registry updated!", icon="✅")

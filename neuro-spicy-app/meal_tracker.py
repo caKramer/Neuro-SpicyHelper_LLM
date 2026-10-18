@@ -3,6 +3,7 @@ import os
 import streamlit as st
 from annotated_text import annotated_text
 from datetime import datetime
+from json_store import save_json
 
 MEAL_LOG_FILE = "meal_log.json"
 
@@ -18,10 +19,7 @@ def load_meal_log():
 
 
 def save_meal_log(log):
-    with open(MEAL_LOG_FILE, "w") as f:
-        json.dump(log, f, indent=2)
-        f.flush()
-        os.fsync(f.fileno())
+    save_json(MEAL_LOG_FILE, log)
 
 
 def log_meal_entry(meal_name, meal_type="Meal", calories=0, effort="None"):

@@ -3,7 +3,7 @@
 Application containing an LLM to help neurodivergent individuals with interoception and executive dysfunction issues
 
 Model:
-Ollama llama3.2
+Ollama llama3.2-3b-ft, imported from Hugging Face [ck-star/llama-3.2-3b-instruct-ft](https://huggingface.co/ck-star/llama-3.2-3b-instruct-ft)
 
 Full fine-tuning of llama3.2-3b-Instruct using Google Colab. Requires A100 GPU to complete full fine tuning.
 Tuned model pushed to [HuggingFace/ck-star](https://huggingface.co/ck-star/llama-3.2-3b-instruct-ft/settings)
@@ -11,6 +11,17 @@ Tuned model pushed to [HuggingFace/ck-star](https://huggingface.co/ck-star/llama
 Application:
 Created with Streamlit
 
+
+## Setup
+
+```bash
+cd neuro-spicy-app
+python3.13 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt huggingface_hub
+./setup_model.sh        # downloads the model weights into model/ and imports them into Ollama (see model/README.md)
+streamlit run app.py
+```
+=======
 ## 2 Options to run:
 
 - Pull repository and open neuro-spicy-app in PyCharm/VSCode/etc
@@ -43,3 +54,4 @@ ollama run llama3.2-3b-ft
   - run app with  `streamlit run app.py`
 - Run in Jupyter lab
   - pull near-spicyHelper Jupyter notebook & run
+

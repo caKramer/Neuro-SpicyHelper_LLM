@@ -129,6 +129,12 @@ if st.session_state.get("capacity_date") != _today():
     st.session_state["water_slider"] = st.session_state.water_count
     save_capacity_state()
 
+# Streamlit drops slider state on runs that don't render them (e.g. the Settings tab)
+if "spoon_slider" not in st.session_state:
+    st.session_state["spoon_slider"] = st.session_state.spoons_count
+if "water_slider" not in st.session_state:
+    st.session_state["water_slider"] = st.session_state.water_count
+
 if "active_dialog" not in st.session_state:
     st.session_state.active_dialog = None
 

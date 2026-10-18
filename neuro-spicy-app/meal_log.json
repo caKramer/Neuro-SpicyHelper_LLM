@@ -1,0 +1,66 @@
+[
+  {
+    "name": "hotdog",
+    "type": "Lunch",
+    "calories": 0,
+    "effort": "None",
+    "time": "11:28 AM"
+  },
+  {
+    "name": "coffee!!!",
+    "type": "Drink",
+    "calories": 0,
+    "effort": "None",
+    "time": "12:26 PM"
+  },
+  {
+    "name": "cinnamon roll bombs",
+    "type": "Breakfast",
+    "calories": 0,
+    "effort": "None",
+    "time": "08:59 AM"
+  },
+  {
+    "name": "coffee",
+    "type": "Drink",
+    "calories": 0,
+    "effort": "None",
+    "time": "08:59 AM"
+  },
+  {
+    "timestamp": "2026-10-03T19:34:33.528093",
+    "time_str": "07:34 PM",
+    "date_str": "2026-10-03",
+    "name": "bagel with peanut butter",
+    "type": "Meal"
+  },
+  {
+    "timestamp": "2026-10-03T19:43:07.267614",
+    "time_str": "07:43 PM",
+    "date_str": "2026-10-03",
+    "name": "Shredded Wheat",
+    "type": "Meal"
+  },
+  {
+    "timestamp": "2026-10-03T19:43:28.418684",
+    "time_str": "07:43 PM",
+    "date_str": "2026-10-03",
+    "name": "Glass of Water",
+    "type": "Drink"
+  },
+  {
+    "name": "half a biscuit with some scrambled egg",
+    "type": "Breakfast",
+    "calories": 300,
+    "effort": "None"
+  },
+  {
+    "timestamp": "2026-10-11T15:45:54.829708",
+    "time_str": "03:45 PM",
+    "date_str": "2026-10-11",
+    "name": "Chicken Quesadilla ",
+    "type": "Meal",
+    "calories": 0,
+    "effort": "None"
+  }
+]

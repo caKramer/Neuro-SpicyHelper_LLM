@@ -1,0 +1,10 @@
+streamlit==1.64.0
+streamlit-elements==0.1.0
+streamlit-calendar==1.4.0
+streamlit-option-menu==0.4.0
+streamlit-shadcn-ui==1.4.0
+streamlit-autorefresh==1.0.1
+st-annotated-text==4.0.2
+pandas==3.0.6
+transformers==5.17.0
+torch==2.14.0

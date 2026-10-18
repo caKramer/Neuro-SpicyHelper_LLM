@@ -1,0 +1,22 @@
+[
+  {
+    "food": "hotdog",
+    "category": "Meal",
+    "timestamp": "2026-09-18T11:28:29.058613"
+  },
+  {
+    "food": "coffee!!!",
+    "category": "Drink",
+    "timestamp": "2026-09-18T12:26:19.313052"
+  },
+  {
+    "food": "cinnamon roll bombs",
+    "category": "Meal",
+    "timestamp": "2026-09-19T08:59:15.906372"
+  },
+  {
+    "food": "coffee",
+    "category": "Drink",
+    "timestamp": "2026-09-19T08:59:22.933831"
+  }
+]

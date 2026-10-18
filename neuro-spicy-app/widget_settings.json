@@ -1,0 +1,51 @@
+{
+  "colors": {
+    "calendar": {
+      "bg": "#eccad8",
+      "text": "#330506"
+    },
+    "meal": {
+      "bg": "#cb8bf5",
+      "text": "#511ca5"
+    },
+    "activity": {
+      "bg": "#ffd3e4",
+      "text": "#2f0612"
+    },
+    "foods": {
+      "bg": "#41efe7",
+      "text": "#042c31"
+    }
+  },
+  "layout": [
+    {
+      "i": "calendar",
+      "x": 0,
+      "y": 0,
+      "w": 4,
+      "h": 14
+    },
+    {
+      "i": "activity",
+      "x": 0,
+      "y": 14,
+      "w": 4,
+      "h": 14
+    },
+    {
+      "i": "meal",
+      "x": 0,
+      "y": 28,
+      "w": 4,
+      "h": 15
+    },
+    {
+      "i": "foods",
+      "x": 0,
+      "y": 43,
+      "w": 4,
+      "h": 15
+    }
+  ],
+  "user_name": "Callista"
+}

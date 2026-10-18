@@ -1,0 +1,16 @@
+[
+  {
+    "name": "test med",
+    "dosage": "10mg",
+    "time": "Morning",
+    "taken": true,
+    "logged_at_time": "12:27 PM"
+  },
+  {
+    "name": "Motrin",
+    "dosage": "1 tab",
+    "time": "12:27 PM",
+    "taken": true,
+    "logged_at_time": "12:27 PM"
+  }
+]

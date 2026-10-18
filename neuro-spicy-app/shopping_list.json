@@ -1,0 +1,32 @@
+[
+  {
+    "item": "Bananas",
+    "category": "Produce",
+    "bought": false
+  },
+  {
+    "item": "String Cheese",
+    "category": "Dairy",
+    "bought": false
+  },
+  {
+    "item": "Apples",
+    "category": "Produce",
+    "bought": false
+  },
+  {
+    "item": "Vegetable Dumplings",
+    "category": "Frozen",
+    "bought": false
+  },
+  {
+    "item": "Blueberries",
+    "category": "Produce",
+    "bought": false
+  },
+  {
+    "item": "Frozen Pizza",
+    "category": "Frozen",
+    "bought": false
+  }
+]

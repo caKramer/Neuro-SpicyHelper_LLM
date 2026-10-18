@@ -1,0 +1,372 @@
+[
+  {
+    "id": "1.0",
+    "name": "Cinnamon Toast",
+    "category": "Breakfast",
+    "texture": "Crunchy",
+    "taste": "Sweet",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Have to use toaster"
+  },
+  {
+    "id": "2.0",
+    "name": "Vanilla Yogurt",
+    "category": "Snack",
+    "texture": "Soft",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Ready to go in fridge"
+  },
+  {
+    "id": "3.0",
+    "name": "Mac & Cheese",
+    "category": "Lunch",
+    "texture": "Soft",
+    "taste": "Salty",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Need to cook on stovetop"
+  },
+  {
+    "id": "6.0",
+    "name": "Shredded Wheat",
+    "category": "Breakfast",
+    "texture": "Soft",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "In pantry"
+  },
+  {
+    "id": "7.0",
+    "name": "Pasta with Spaghetti Sauce",
+    "category": "Dinner",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Need to boil water to make pasta"
+  },
+  {
+    "id": "8.0",
+    "name": "Chicken Quesadilla ",
+    "category": "Dinner",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "High",
+    "notes": "Have to cook the chicken and then make the quesadilla"
+  },
+  {
+    "id": "9.0",
+    "name": "Steamed rice with fried egg",
+    "category": "Lunch",
+    "texture": "Soft",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Microwave rice bowl; fry egg on stovetop"
+  },
+  {
+    "id": "10.0",
+    "name": "Apple Jacks",
+    "category": "Breakfast",
+    "texture": "Crunchy",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "In pantry"
+  },
+  {
+    "id": "11.0",
+    "name": "Frozen Pizza",
+    "category": "Dinner",
+    "texture": "Crunchy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Need to put in oven- oven needs to heat up before baking."
+  },
+  {
+    "id": "12.0",
+    "name": "Mango Yogurt",
+    "category": "Snack",
+    "texture": "Soft",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "None",
+    "notes": "Ready to go in Fridge"
+  },
+  {
+    "id": "13.0",
+    "name": "Yogurt Smoothie",
+    "category": "Snack",
+    "texture": "Soft",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "None",
+    "notes": "Ready to go in the fridge"
+  },
+  {
+    "id": "food_1270c893",
+    "name": "Ramen Noodles",
+    "category": "Lunch",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "In Pantry. Cook in microwave."
+  },
+  {
+    "id": "food_1923f4f3",
+    "name": "Granola Bar",
+    "category": "Snack",
+    "texture": "Chewy",
+    "taste": "Sweet",
+    "temp": "Room Temperature",
+    "effort": "None",
+    "notes": "In pantry"
+  },
+  {
+    "id": "food_ac4c3050",
+    "name": "Bagel with Cream Cheese",
+    "category": "Breakfast",
+    "texture": "Soft",
+    "taste": "Savory",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Bagel in pantry. Cream cheese in fridge."
+  },
+  {
+    "id": "food_b4984d1e",
+    "name": "Peanut Butter Sandwich",
+    "category": "Lunch",
+    "texture": "Soft",
+    "taste": "Other",
+    "temp": "Room Temperature",
+    "effort": "Low",
+    "notes": "Bread and peanut butter in pantry"
+  },
+  {
+    "id": "food_4b56f7fa",
+    "name": "Nachos",
+    "category": "Dinner",
+    "texture": "Crunchy",
+    "taste": "Other",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Cook beef. Chips in pantry"
+  },
+  {
+    "id": "food_394f23d0",
+    "name": "Sloppy Joe's",
+    "category": "Dinner",
+    "texture": "Soft",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Cook Beef. Buns in pantry"
+  },
+  {
+    "id": "food_1e08e85a",
+    "name": "Protein Balls",
+    "category": "Snack",
+    "texture": "Chewy",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Ready in Fridge."
+  },
+  {
+    "id": "food_b10668a1",
+    "name": "Popcorn",
+    "category": "Snack",
+    "texture": "Crunchy",
+    "taste": "Salty",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Microwave- hit Popcorn button!"
+  },
+  {
+    "id": "food_c546f32e",
+    "name": "Rice Krispy treats",
+    "category": "Snack",
+    "texture": "Chewy",
+    "taste": "Sweet",
+    "temp": "Room Temperature",
+    "effort": "None",
+    "notes": "Ready to eat"
+  },
+  {
+    "id": "food_22034617",
+    "name": "Vegetable fried rice",
+    "category": "Dinner",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Cold",
+    "effort": "High",
+    "notes": "Vegetables need to be cut up. Cook rice. Then fry it with an egg."
+  },
+  {
+    "id": "food_fd3313b7",
+    "name": "Yogurt bowl with granola",
+    "category": "Breakfast",
+    "texture": "Crunchy",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Top your favorite yogurt with granola!"
+  },
+  {
+    "id": "food_be37cf63",
+    "name": "Bagel with Peanut Butter",
+    "category": "Breakfast",
+    "texture": "Chewy",
+    "taste": "Salty",
+    "temp": "Warm",
+    "effort": "Low",
+    "notes": "Bagel and Peanut butter in pantry"
+  },
+  {
+    "id": "food_8bedf8f7",
+    "name": "Bagel with butter and honey",
+    "category": "Breakfast",
+    "texture": "Chewy",
+    "taste": "Sweet",
+    "temp": "Warm",
+    "effort": "Low",
+    "notes": "Bagel and honey in pantry"
+  },
+  {
+    "id": "food_9e44b967",
+    "name": "Toast with honey",
+    "category": "Snack",
+    "texture": "Crunchy",
+    "taste": "Sweet",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Turn oven on; slather butter and honey on bread and let heat in oven."
+  },
+  {
+    "id": "food_646fe211",
+    "name": "Cream of wheat",
+    "category": "Breakfast",
+    "texture": "Gloopy",
+    "taste": "Other",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Microwave for 2.5 minutes. Top with favorite toppings!"
+  },
+  {
+    "id": "food_ef24021b",
+    "name": "Oatmeal - Plain",
+    "category": "Breakfast",
+    "texture": "Gloopy",
+    "taste": "Other",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Heat in microwave for 3 minutes"
+  },
+  {
+    "id": "food_69a715ea",
+    "name": "Oatmeal with banana",
+    "category": "Breakfast",
+    "texture": "Gloopy",
+    "taste": "Sweet",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Heat oatmeal in microwave for 2.5 minutes. Cut up banana and put on top."
+  },
+  {
+    "id": "food_d8e1f7b4",
+    "name": "Oatmeal with Peanut Butter",
+    "category": "Breakfast",
+    "texture": "Gloopy",
+    "taste": "Salty",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Heat oatmeal in microwave for 2.5 minutes, stir in peanut butter"
+  },
+  {
+    "id": "food_df81b9fb",
+    "name": "Oatmeal with apples",
+    "category": "Breakfast",
+    "texture": "Gloopy",
+    "taste": "Sweet",
+    "temp": "Hot",
+    "effort": "Medium",
+    "notes": "Chop up apple and put in bowl with oatmeal. Heat oatmeal in microwave for 2.5 minutes."
+  },
+  {
+    "id": "food_07371294",
+    "name": "Yogurt with berries",
+    "category": "Breakfast",
+    "texture": "Soft",
+    "taste": "Sweet",
+    "temp": "Cold",
+    "effort": "Low",
+    "notes": "Top yogurt cup with fresh or frozen berries."
+  },
+  {
+    "id": "food_cdab3cfe",
+    "name": "Chips and Cheese",
+    "category": "Snack",
+    "texture": "Crunchy",
+    "taste": "Salty",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Chips in Pantry. Top with shredded cheese and microwave for 60-90 seconds"
+  },
+  {
+    "id": "food_7b591cf4",
+    "name": "Crispy chicken wrap",
+    "category": "Dinner",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Warm",
+    "effort": "Medium",
+    "notes": "Get chicken out of freezer and put in air fryer. Get wraps out of pantry. Add any other desired toppings."
+  },
+  {
+    "id": "food_5a2ce963",
+    "name": "Chicken nuggets",
+    "category": "Dinner",
+    "texture": "Crunchy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Get chicken out of freezer and put in air fryer for 15 minutes."
+  },
+  {
+    "id": "food_7e7e693d",
+    "name": "Burrito",
+    "category": "Lunch",
+    "texture": "Chewy",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Get burrito out of freezer and heat in microwave for 2 minutes"
+  },
+  {
+    "id": "food_8531a82c",
+    "name": "Scrambled Eggs",
+    "category": "Breakfast",
+    "texture": "Soft",
+    "taste": "Savory",
+    "temp": "Hot",
+    "effort": "Low",
+    "notes": "Get eggs out of fridge and break into a bowl. Scramble lightly and microwave for 1 minute, stirring after 30 seconds."
+  },
+  {
+    "id": "food_7877cf5c",
+    "name": "Peanuts",
+    "category": "Snack",
+    "texture": "Crunchy",
+    "taste": "Salty",
+    "temp": "Room Temperature",
+    "effort": "None",
+    "notes": "Peanuts in pantry"
+  }
+]

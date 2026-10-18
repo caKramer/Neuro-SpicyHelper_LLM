@@ -16,6 +16,7 @@ import medication_tracker as med_trk
 from datetime import datetime
 from dashboard_component import init_dashboard_layout
 import requests
+from json_store import save_json
 
 # Page Configuration & Layout Init
 init_dashboard_layout()
@@ -71,35 +72,41 @@ def load_settings():
 
 
 def save_settings(settings):
-    with open(SETTINGS_FILE, "w") as f:
-        json.dump(settings, f, indent=2)
+    save_json(SETTINGS_FILE, settings)
+
+
+def _today():
+    return datetime.now().strftime("%Y-%m-%d")
 
 
 def load_capacity_state():
-    default_state = {"spoons_count": 12, "water_count": 0, "synced_drink_count": 0}
+    """Loads today's capacity counters; spoons and water start fresh each day."""
+    default_state = {"spoons_count": 12, "water_count": 0, "synced_drink_count": 0, "date": _today()}
     if not os.path.exists(CAPACITY_STATE_FILE):
         return default_state
     try:
         with open(CAPACITY_STATE_FILE, "r") as f:
             data = json.load(f)
-            for key, default in default_state.items():
-                data.setdefault(key, default)
-            return data
     except (json.JSONDecodeError, ValueError):
         return default_state
+    # Files saved before dates were tracked are treated as today's
+    if data.get("date", _today()) != _today():
+        return default_state
+    for key, default in default_state.items():
+        data.setdefault(key, default)
+    return data
 
 
 def save_capacity_state():
-    with open(CAPACITY_STATE_FILE, "w") as f:
-        json.dump(
-            {
-                "spoons_count": st.session_state.spoons_count,
-                "water_count": st.session_state.water_count,
-                "synced_drink_count": st.session_state.synced_drink_count,
-            },
-            f,
-            indent=2,
-        )
+    save_json(
+        CAPACITY_STATE_FILE,
+        {
+            "spoons_count": st.session_state.spoons_count,
+            "water_count": st.session_state.water_count,
+            "synced_drink_count": st.session_state.synced_drink_count,
+            "date": st.session_state.capacity_date,
+        },
+    )
 
 
 settings = load_settings()
@@ -110,16 +117,18 @@ if "active_layout" not in st.session_state:
 # Global session state initializations
 if "user_name" not in st.session_state:
     st.session_state.user_name = settings.get("user_name", "")
-if "spoons_count" not in st.session_state:
+
+# (Re)load capacity on first run and whenever the date rolls over in a long-lived session
+if st.session_state.get("capacity_date") != _today():
     _capacity_state = load_capacity_state()
+    st.session_state.capacity_date = _capacity_state["date"]
     st.session_state.spoons_count = _capacity_state["spoons_count"]
     st.session_state.water_count = _capacity_state["water_count"]
     st.session_state.synced_drink_count = _capacity_state["synced_drink_count"]
-
-if "spoon_slider" not in st.session_state:
     st.session_state["spoon_slider"] = st.session_state.spoons_count
-if "water_slider" not in st.session_state:
     st.session_state["water_slider"] = st.session_state.water_count
+    save_capacity_state()
+
 if "active_dialog" not in st.session_state:
     st.session_state.active_dialog = None
 

@@ -53,5 +53,8 @@ ollama run llama3.2-3b-ft
   - pip install requirements.txt
   - run app with  `streamlit run app.py`
 - Run in Jupyter lab
-  - pull near-spicyHelper Jupyter notebook & run
+  - `pip install -r requirements.txt -r requirements-notebook.txt`
+  - from `neuro-spicy-app/`, run `jupyter lab` and open `neuro_spicy_helper.ipynb`
+  - Run ▸ Run All Cells. The last cell is a tabbed, all-in-one dashboard.
+  - The notebook reads and writes the same JSON data files as the Streamlit app.
 

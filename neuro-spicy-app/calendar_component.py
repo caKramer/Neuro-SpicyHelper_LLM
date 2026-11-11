@@ -271,11 +271,45 @@ def clear_stale_synced_events():
     save_events(manual_events)
 
 
-@st.dialog("➕ Add Schedule Event")
-def add_event_dialog(start_str, end_str):
-    st.write(f"**Selected Date Range:** `{start_str}`")
+def _to_local(iso_str):
+    """Parses a FullCalendar ISO string (UTC 'Z' or date-only) into a naive local datetime."""
+    s = str(iso_str).strip()
+    if "T" not in s:
+        return datetime.strptime(s[:10], "%Y-%m-%d")
+    dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    if dt.tzinfo is not None:
+        dt = dt.astimezone().replace(tzinfo=None)
+    return dt
 
-    date_part = start_str.split("T")[0] if "T" in start_str else start_str
+
+def parse_selection(start_str, end_str):
+    """
+    Converts a calendar click/selection into (local_date, start_time, end_time).
+    FullCalendar reports selections via toISOString() (UTC), so the raw date prefix
+    is wrong for evening slots and the clicked time must be converted back to local.
+    """
+    start_dt = _to_local(start_str)
+    try:
+        end_dt = _to_local(end_str)
+    except (ValueError, TypeError):
+        end_dt = start_dt
+
+    if end_dt <= start_dt:
+        end_dt = start_dt + timedelta(hours=1)
+
+    if end_dt.date() != start_dt.date():
+        end_time = time(23, 59)
+    else:
+        end_time = end_dt.time().replace(second=0, microsecond=0)
+
+    return start_dt.date(), start_dt.time().replace(second=0, microsecond=0), end_time
+
+
+@st.dialog("➕ Add Schedule Event")
+def add_event_dialog(start_str, end_str, all_day_default=False):
+    sel_date, sel_start, sel_end = parse_selection(start_str, end_str)
+    date_part = sel_date.strftime("%Y-%m-%d")
+    st.write(f"**Selected:** {sel_date.strftime('%A, %B %d, %Y')}")
 
     with st.form("add_event_form"):
         title = st.text_input(
@@ -283,13 +317,13 @@ def add_event_dialog(start_str, end_str):
             placeholder="e.g., Take Morning Vitamin, Doctor Visit"
         )
 
-        all_day = st.checkbox("All Day Event", value=False)
+        all_day = st.checkbox("All Day Event", value=all_day_default)
 
         col_start, col_end = st.columns(2)
         with col_start:
-            start_time = st.time_input("Start Time", value=time(9, 0))
+            start_time = st.time_input("Start Time", value=sel_start)
         with col_end:
-            end_time = st.time_input("End Time", value=time(10, 0))
+            end_time = st.time_input("End Time", value=sel_end)
 
         col_save, col_cancel = st.columns([1, 1])
         with col_save:
@@ -422,12 +456,10 @@ def render_calendar(bg_color="#FFFFFF", text_color="#2C3E50",
     )
 
     if cal_state.get("select"):
-        add_event_dialog(
-            cal_state["select"]["start"], cal_state["select"]["end"]
-        )
+        sel = cal_state["select"]
+        add_event_dialog(sel["start"], sel["end"], sel.get("allDay", False))
     elif cal_state.get("dateClick"):
-        add_event_dialog(
-            cal_state["dateClick"]["date"], cal_state["dateClick"]["date"]
-        )
+        click = cal_state["dateClick"]
+        add_event_dialog(click["date"], click["date"], click.get("allDay", False))
     elif cal_state.get("eventClick"):
         edit_event_dialog(cal_state["eventClick"]["event"])
